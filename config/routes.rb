@@ -3,4 +3,13 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "articles#index"
+
+  root 'restaurants#index'
+  resources :restaurants do
+    collection do
+      get :top
+    end
+
+    resources :reviews, shallow: true, only: %i[new create destroy]
+  end
 end
